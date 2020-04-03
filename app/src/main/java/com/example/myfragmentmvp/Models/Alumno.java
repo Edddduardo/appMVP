@@ -2,6 +2,7 @@ package com.example.myfragmentmvp.Models;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.Button;
@@ -11,10 +12,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myfragmentmvp.Enums.Enums;
-import com.example.myfragmentmvp.FormAlumno;
+import com.example.myfragmentmvp.Views.FormAlumno;
 import com.example.myfragmentmvp.Fragments.TablaAlumnos;
 import com.example.myfragmentmvp.Helpers.Helpers;
-import com.example.myfragmentmvp.HelpersServices.HelpersService;
 import com.example.myfragmentmvp.Views.EditAlumno;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
@@ -23,8 +23,6 @@ import com.loopj.android.http.RequestParams;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
-
-import java.util.ArrayList;
 
 import cz.msebera.android.httpclient.Header;
 
@@ -195,8 +193,10 @@ public class Alumno {
     }
 
     public static void cargarTabla(final TablaAlumnos view){
-        AsyncHttpClient cliente = HelpersService.getClientToken();
-        cliente.get(Helpers.URL+ Enums.getAlumnos,new JsonHttpResponseHandler(){
+        String token = Login.token;
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.addHeader("Authorization", "Token "+ token);
+        client.get(Helpers.URL+ Enums.getAlumnos,new JsonHttpResponseHandler(){
             @SuppressLint("ResourceType")
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONArray response) {
@@ -218,22 +218,47 @@ public class Alumno {
 
                     TextView label_name = new TextView(con);
                     label_name.setId(20);
-                    label_name.setText("Nombre");
+                    label_name.setText("Name");
                     label_name.setTextColor(Color.WHITE);
                     label_name.setPadding(5, 5, 50, 5);
                     tr_head.addView(label_name);// add the column to the table row here
-                    tr_head.setLayoutParams(new TableRow.LayoutParams(
-                            TableRow.LayoutParams.MATCH_PARENT,
-                            TableRow.LayoutParams.WRAP_CONTENT));
 
                     TextView label_carrera = new TextView(con);
                     label_carrera.setId(21);
-                    label_carrera.setText("lastname");
+                    label_carrera.setText("Lastname");
                     label_carrera.setTextColor(Color.WHITE);
                     label_carrera.setPadding(5, 5, 50, 5);
                     tr_head.addView(label_carrera);// add the column to the table row here
 
-                    TablaAlumnos.tl.addView(tr_head, new TableLayout.LayoutParams(
+                    TextView label_mas = new TextView(con);
+                    label_mas.setId(21);
+                    label_mas.setText("More");
+                    label_mas.setTextColor(Color.WHITE);
+                    label_mas.setPadding(5, 5, 50, 5);
+                    tr_head.addView(label_mas);// add the column to the table row here
+
+                    TextView label_del = new TextView(con);
+                    label_del.setId(21);
+                    label_del.setText("Delete");
+                    label_del.setTextColor(Color.WHITE);
+                    label_del.setPadding(5, 5, 50, 5);
+                    tr_head.addView(label_del);// add the column to the table row here
+
+                    TextView label_edit = new TextView(con);
+                    label_edit.setId(21);
+                    label_edit.setText("Edit");
+                    label_edit.setTextColor(Color.WHITE);
+                    label_edit.setPadding(5, 5, 50, 5);
+                    tr_head.addView(label_edit);// add the column to the table row here
+
+                    tr_head.setLayoutParams(new TableRow.LayoutParams(
+                            TableRow.LayoutParams.MATCH_PARENT,
+                            TableRow.LayoutParams.WRAP_CONTENT));
+
+
+
+
+                    view.tl.addView(tr_head, new TableLayout.LayoutParams(
                             TableRow.LayoutParams.FILL_PARENT,
                             TableRow.LayoutParams.WRAP_CONTENT));
 
@@ -271,8 +296,10 @@ public class Alumno {
                         tr.addView(labelCarrera);
 
                         Button btnCosa = new Button(con);
+                        btnCosa.setWidth(6);
                         btnCosa.setId(i+200);
-                        btnCosa.setText("Ver mas");
+                        btnCosa.setText("+");
+                        btnCosa.setBackgroundColor(Color.parseColor("#40c4ff"));
                         btnCosa.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -280,7 +307,7 @@ public class Alumno {
                                     String ids = temp.get("id").toString();
                                     System.out.println(".-..-.-.-.-.-.-..-.-.-");
                                     iden = ids;
-                                    //getData(iden);
+                                    view.getAlumno(Integer.parseInt(iden));
                                     System.out.println(temp.get("id").toString());
                                     System.out.println(".-..-.-.-.-.-.-..-.-.-");
                                 }catch (Exception e){}
@@ -290,12 +317,52 @@ public class Alumno {
                         });
                         tr.addView(btnCosa);
 
+                        Button btnEliminar = new Button(con);
+                        btnEliminar.setWidth(6);
+                        btnEliminar.setId(i+200);
+                        btnEliminar.setText("-");
+                        btnEliminar.setBackgroundColor(Color.parseColor("#f44336"));
+                        btnEliminar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    String ids = temp.get("id").toString();
+                                    System.out.println(".-..-.-.-.-.-.-..-.-.-");
+                                    iden = ids;
+                                    view.deleteAlumno(Integer.parseInt(iden));
+                                    System.out.println(temp.get("id").toString());
+                                    System.out.println(".-..-.-.-.-.-.-..-.-.-");
+                                }catch (Exception e){}
+                                System.out.println("Se eligió el id "+iden);
+                                //Navegar a pagina de editar
+                            }
+                        });
+                        tr.addView(btnEliminar);
 
-                        TablaAlumnos.tl.addView(tr, new TableLayout.LayoutParams(
+                        Button btnEditar = new Button(con);
+                        btnEditar.setWidth(6);
+                        btnEditar.setId(i+200);
+                        btnEditar.setText("E");
+                        btnEditar.setBackgroundColor(Color.parseColor("#ffd600"));
+                        btnEditar.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                try {
+                                    String ids = temp.get("id").toString();
+                                    Helpers.select = Integer.parseInt(ids);
+                                    Intent intent = new Intent(view.getContext() , EditAlumno.class);
+                                    view.startActivity(intent);
+                                }catch (Exception e){}
+                                System.out.println("Se eligió el id "+iden);
+                            }
+                        });
+                        tr.addView(btnEditar);
+
+
+                        view.tl.addView(tr, new TableLayout.LayoutParams(
                                 TableRow.LayoutParams.FILL_PARENT,
                                 TableRow.LayoutParams.WRAP_CONTENT));
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -306,6 +373,7 @@ public class Alumno {
                 JSONObject arr = null;
                 Context con = view.getContext();
                 try {
+                    Toast.makeText(con, String.valueOf(error), Toast.LENGTH_LONG).show();
                     Toast.makeText(con, "Error al obtener datos, quizá se murió el server", Toast.LENGTH_LONG).show();
 
                 } catch (Exception e) {

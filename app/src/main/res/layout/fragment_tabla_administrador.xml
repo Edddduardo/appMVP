@@ -3,11 +3,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#757575"
     tools:context=".Fragments.TablaAdministrador">
+
     <TableLayout
         android:id="@+id/tl"
         android:layout_width="match_parent"
-        android:layout_height="477dp"
+        android:layout_height="687dp"
         android:layout_marginTop="48dp">
 
         <TableRow
@@ -39,6 +41,7 @@
         android:id="@+id/btnEditarCarrera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#d3e992"
         android:text="Nueva Carrera" />
 
 </FrameLayout>

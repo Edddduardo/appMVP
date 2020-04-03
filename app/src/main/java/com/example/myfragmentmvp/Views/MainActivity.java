@@ -105,11 +105,7 @@ public class MainActivity extends AppCompatActivity implements LoginPresenter.Vi
     public void entrar(){
         EditText editText = findViewById(R.id.editText);
         EditText editText2 = findViewById(R.id.editText2);
+        Login.IniciarSesión(editText.getText().toString(),editText2.getText().toString(),this);
 
-        Login.IniciarSesión(editText.getText().toString(),editText2.getText().toString());
-        if (Login.log == true){
-            Intent intent = new Intent(MainActivity.this , TablaPrincipal.class);
-            startActivity(intent);
-        }
     }
 }

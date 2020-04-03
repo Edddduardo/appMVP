@@ -1,6 +1,6 @@
 package com.example.myfragmentmvp.Presenters;
 
-import com.example.myfragmentmvp.EditCarrera;
+import com.example.myfragmentmvp.Views.EditCarrera;
 import com.example.myfragmentmvp.Models.Carrera;
 
 public class EditCarreraPresenter {

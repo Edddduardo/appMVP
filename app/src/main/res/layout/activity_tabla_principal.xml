@@ -4,13 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#757575"
     tools:context=".Views.TablaPrincipal">
+
     <FrameLayout
         android:id="@+id/fragment2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:layout_editor_absoluteX="-100dp"
-        tools:layout_editor_absoluteY="-16dp">
-    </FrameLayout>
+        android:layout_width="411dp"
+        android:layout_height="731dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp"></FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

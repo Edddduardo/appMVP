@@ -1,5 +1,7 @@
 package com.example.myfragmentmvp.Models;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 
 import com.example.myfragmentmvp.Enums.Enums;
@@ -28,7 +30,7 @@ public class Login {
     public static boolean log = false;
     private static String url = Helpers.URL+Enums.login;
 
-    public static void IniciarSesión(String usuario, String contraseña) {
+    public static void IniciarSesión(String usuario, String contraseña, final MainActivity view) {
         RequestParams params = new RequestParams();
         params.put("username", usuario);
         params.put("password", contraseña);
@@ -56,6 +58,8 @@ public class Login {
                             Login.log = true;
                             String username = "Un usuario";
                             Helpers.admin = response.getBoolean("super");
+                            Intent intent = new Intent(view , TablaPrincipal.class);
+                            view.startActivity(intent);
                         } catch (Exception e) {
 
                             e.printStackTrace();

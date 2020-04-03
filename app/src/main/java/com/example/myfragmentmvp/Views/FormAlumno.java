@@ -1,4 +1,4 @@
-package com.example.myfragmentmvp;
+package com.example.myfragmentmvp.Views;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,7 +11,7 @@ import android.widget.EditText;
 
 import com.example.myfragmentmvp.Models.Alumno;
 import com.example.myfragmentmvp.Presenters.FormAlumnoPresenter;
-import com.example.myfragmentmvp.Views.TablaPrincipal;
+import com.example.myfragmentmvp.R;
 
 public class FormAlumno extends AppCompatActivity implements FormAlumnoPresenter.View {
     EditText etNombre;

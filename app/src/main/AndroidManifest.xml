@@ -11,10 +11,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".EditCarrera"></activity>
+        <activity android:name=".Views.EditCarrera"></activity>
         <activity android:name=".Views.FormCarrera" />
         <activity android:name=".Views.EditAlumno" />
-        <activity android:name=".FormAlumno" />
+        <activity android:name=".Views.FormAlumno" />
         <activity android:name=".Views.TablaPrincipal" />
         <activity android:name=".Views.MainActivity">
             <intent-filter>

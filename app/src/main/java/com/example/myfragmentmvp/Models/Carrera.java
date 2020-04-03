@@ -11,7 +11,7 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.myfragmentmvp.EditCarrera;
+import com.example.myfragmentmvp.Views.EditCarrera;
 import com.example.myfragmentmvp.Enums.Enums;
 import com.example.myfragmentmvp.Views.FormCarrera;
 import com.example.myfragmentmvp.Fragments.TablaAdministrador;
@@ -173,7 +173,7 @@ public class Carrera {
         });
     }
 
-    public void cargarTabla(final TablaAdministrador view) {
+    public static void cargarTabla(final TablaAdministrador view) {
         String token = Login.token;
         AsyncHttpClient cliente = new AsyncHttpClient();
         cliente.addHeader("Authorization", "Token "+ token);
@@ -276,15 +276,14 @@ public class Carrera {
                         Button btnCosa = new Button(con);
                         btnCosa.setId(i+200);
                         btnCosa.setText("+");
+                        btnCosa.setBackgroundColor(Color.parseColor("#40c4ff"));
                         btnCosa.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 try {
                                     String ids = temp.get("id").toString();
                                     System.out.println(".-..-.-.-.-.-.-..-.-.-");
-
-                                    //getData(iden);
-                                    getCarrera(Integer.parseInt(ids),view);
+                                    view.getCarrera(Integer.parseInt(ids));
                                     System.out.println(temp.get("id").toString());
                                     System.out.println(".-..-.-.-.-.-.-..-.-.-");
                                 }catch (Exception e){}
@@ -297,14 +296,14 @@ public class Carrera {
                         Button btnDel = new Button(con);
                         btnDel.setId(i+200);
                         btnDel.setText("-");
+                        btnDel.setBackgroundColor(Color.parseColor("#f44336"));
                         btnDel.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 try {
                                     String ids = temp.get("id").toString();
                                     System.out.println(".-..-.-.-.-.-.-..-.-.-");
-
-                                    deleteCarrera(Integer.parseInt(ids),view);
+                                    view.deleteCarrera(Integer.parseInt(ids));
                                     System.out.println(temp.get("id").toString());
                                     System.out.println(".-..-.-.-.-.-.-..-.-.-");
                                 }catch (Exception e){}
@@ -318,6 +317,7 @@ public class Carrera {
                         Button btnEdit = new Button(con);
                         btnEdit.setId(i+200);
                         btnEdit.setText("E");
+                        btnEdit.setBackgroundColor(Color.parseColor("#ffd600"));
                         btnEdit.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
@@ -352,7 +352,7 @@ public class Carrera {
                 JSONObject arr = null;
                 Context con = view.getContext();
                 try {
-                    Toast.makeText(con, "Error al obtener datos, quizá se murió el server", Toast.LENGTH_LONG).show();
+                    Toast.makeText(con, "Error al obtener datos, quizá se murió el server ADMIISTRADOR", Toast.LENGTH_LONG).show();
 
                 } catch (Exception e) {
                     e.printStackTrace();

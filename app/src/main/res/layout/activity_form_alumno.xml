@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FormAlumno">
+    android:background="#757575"
+    tools:context=".Views.FormAlumno">
 
     <EditText
         android:id="@+id/etNombrec2"
@@ -14,6 +15,7 @@
         android:ems="10"
         android:hint="Nombre"
         android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -24,7 +26,9 @@
         android:id="@+id/btnEditarCarrera"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="#6da000"
         android:text="Crear"
+        android:textColor="@android:color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -38,6 +42,7 @@
         android:ems="10"
         android:hint="Edad"
         android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etPerido2" />
@@ -48,7 +53,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:ems="10"
+        android:hint="Dirección"
         android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etGenero2" />
@@ -61,6 +68,7 @@
         android:ems="10"
         android:hint="Genero"
         android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etCodigo2" />
@@ -73,6 +81,7 @@
         android:ems="10"
         android:hint="Apellido"
         android:inputType="textPersonName"
+        android:textColorHint="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etNombrec2" />
@@ -82,6 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nuevo usuario"
+        android:textColor="@android:color/white"
         android:textSize="36sp"
         app:layout_constraintBottom_toTopOf="@+id/etNombrec2"
         app:layout_constraintEnd_toEndOf="parent"
